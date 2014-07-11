@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>HTML2JS</title>
+</head>
+<style>
+	body{margin:0;padding:0;}
+	textarea{ width:98%; height:300px;margin:5px;}
+	.btns{ width:450px; height:50px; margin:5px auto; padding:0px;}
+	button{ display:block; width:200px; height:50px;  float:left; font-size:18px; font-family: "Microsoft YaHei"; background-color: #00cc00; border:none; cursor: pointer; color:#FFF;}
+	#J2H {margin-left: 50px;}
+</style>
+<script>
+	function HTML2JS(){
+		var elem = document.getElementById("in").value;
+		elem = elem.replace(/\"/g, "\\\"");
+		elem = elem.replace(/\n/g, "\\\n");
+		elem = "document.write(\"\\\n" + elem +  "\\\n\");";
+		document.getElementById("out").value = elem;
+	}
+
+	function JS2HTML(){
+		var elem = document.getElementById("in").value;
+		elem = elem.replace(/document.write\(\"\\\n/g, "");
+		elem = elem.replace(/\\\"/g, "\"");
+		elem = elem.replace(/\\\n/g, "\n");
+		elem = elem.replace(/\"\)\;/g, "");
+		document.getElementById("out").value = elem;
+	}
+
+
+</script>
+<body>
+	<textarea name="in" id="in" ></textarea>
+	<div class="btns">
+		<button id="H2J" onclick="HTML2JS()">HTML to Javascript</button>
+		<button id="J2H" onclick="JS2HTML()">Javascript to HTML</button>
+	</div>
+	<textarea name="out" id="out"></textarea>
+</body>
+</html>
